@@ -136,10 +136,24 @@ function generateQR() {
         <small>${landingPageURL}</small>
     `;
     
-    // Add event listeners to action buttons
-    document.getElementById('download-qr-btn').addEventListener('click', downloadQR);
-    document.getElementById('download-vcard-btn').addEventListener('click', downloadVCard);
-    document.getElementById('copy-url-btn').addEventListener('click', copyLandingPageURL);
+    // Add event listeners to action buttons (only once)
+    const downloadQRBtn = document.getElementById('download-qr-btn');
+    const downloadVCardBtn = document.getElementById('download-vcard-btn');
+    const copyURLBtn = document.getElementById('copy-url-btn');
+    
+    // Remove any existing listeners by cloning and replacing the buttons
+    if (!downloadQRBtn.hasAttribute('data-listener-attached')) {
+        downloadQRBtn.addEventListener('click', downloadQR);
+        downloadQRBtn.setAttribute('data-listener-attached', 'true');
+    }
+    if (!downloadVCardBtn.hasAttribute('data-listener-attached')) {
+        downloadVCardBtn.addEventListener('click', downloadVCard);
+        downloadVCardBtn.setAttribute('data-listener-attached', 'true');
+    }
+    if (!copyURLBtn.hasAttribute('data-listener-attached')) {
+        copyURLBtn.addEventListener('click', copyLandingPageURL);
+        copyURLBtn.setAttribute('data-listener-attached', 'true');
+    }
     
     // Generate and show preview
     generatePreview();
