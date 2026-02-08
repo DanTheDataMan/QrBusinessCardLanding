@@ -22,7 +22,7 @@
                 <h2>🎨 Customize Your Landing Page</h2>
                 <div class="theme-selector">
                     <label for="theme">Choose a Theme:</label>
-                    <select id="theme" onchange="changeTheme()">
+                    <select id="theme">
                         <option value="professional">Professional Blue</option>
                         <option value="modern">Modern Dark</option>
                         <option value="elegant">Elegant Purple</option>
@@ -32,8 +32,8 @@
                 </div>
                 <div class="logo-upload">
                     <label for="logo-upload">Upload Your Logo:</label>
-                    <input type="file" id="logo-upload" accept="image/*" onchange="handleLogoUpload(event)">
-                    <button onclick="removeLogo()" class="btn-secondary">Remove Logo</button>
+                    <input type="file" id="logo-upload" accept="image/*">
+                    <button id="remove-logo-btn" class="btn-secondary">Remove Logo</button>
                 </div>
             </section>
 
@@ -136,9 +136,9 @@
                 <h2>✅ Your QR Code</h2>
                 <div id="qr-code-container"></div>
                 <div class="qr-actions">
-                    <button onclick="downloadQR()" class="btn-primary">Download QR Code</button>
-                    <button onclick="downloadVCard()" class="btn-secondary">Download vCard File</button>
-                    <button onclick="copyLandingPageURL()" class="btn-secondary">Copy Landing Page URL</button>
+                    <button id="download-qr-btn" class="btn-primary">Download QR Code</button>
+                    <button id="download-vcard-btn" class="btn-secondary">Download vCard File</button>
+                    <button id="copy-url-btn" class="btn-secondary">Copy Landing Page URL</button>
                 </div>
                 <div id="landing-page-url" style="margin-top: 20px;"></div>
             </section>

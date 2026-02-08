@@ -136,6 +136,11 @@ function generateQR() {
         <small>${landingPageURL}</small>
     `;
     
+    // Add event listeners to action buttons
+    document.getElementById('download-qr-btn').addEventListener('click', downloadQR);
+    document.getElementById('download-vcard-btn').addEventListener('click', downloadVCard);
+    document.getElementById('copy-url-btn').addEventListener('click', copyLandingPageURL);
+    
     // Generate and show preview
     generatePreview();
     
@@ -251,7 +256,7 @@ function downloadVCard() {
 }
 
 // Copy Landing Page URL
-function copyLandingPageURL() {
+function copyLandingPageURL(event) {
     const landingPageURL = generateLandingPageURL();
     navigator.clipboard.writeText(landingPageURL).then(() => {
         const originalText = event.target.textContent;
@@ -268,4 +273,11 @@ function copyLandingPageURL() {
 document.addEventListener('DOMContentLoaded', function() {
     // Set default theme
     changeTheme();
+    
+    // Add event listeners
+    document.getElementById('theme').addEventListener('change', changeTheme);
+    document.getElementById('logo-upload').addEventListener('change', handleLogoUpload);
+    document.getElementById('remove-logo-btn').addEventListener('click', removeLogo);
+    document.getElementById('photo-upload').addEventListener('change', handlePhotoUpload);
+    document.getElementById('generate-qr-btn').addEventListener('click', generateQR);
 });

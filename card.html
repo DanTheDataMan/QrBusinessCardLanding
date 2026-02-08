@@ -379,8 +379,8 @@
                 // Action Buttons
                 cardHTML += `
                     <div class="action-buttons">
-                        <button class="btn btn-primary" onclick="downloadVCard()">Add to Contacts</button>
-                        <button class="btn btn-secondary" onclick="shareCard()">Share Card</button>
+                        <button class="btn btn-primary" id="download-vcard-btn">Add to Contacts</button>
+                        <button class="btn btn-secondary" id="share-card-btn">Share Card</button>
                     </div>
                 `;
                 
@@ -390,6 +390,14 @@
                 
                 // Store data for vCard generation
                 window.cardData = data;
+                
+                // Add event listeners for buttons
+                setTimeout(() => {
+                    const downloadBtn = document.getElementById('download-vcard-btn');
+                    const shareBtn = document.getElementById('share-card-btn');
+                    if (downloadBtn) downloadBtn.addEventListener('click', downloadVCard);
+                    if (shareBtn) shareBtn.addEventListener('click', shareCard);
+                }, 0);
                 
             } catch (error) {
                 console.error('Error loading card:', error);

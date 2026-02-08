@@ -22,7 +22,7 @@
     }
   },
   "globalHeaders": {
-    "content-security-policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com data: blob:;",
+    "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self';",
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
     "Referrer-Policy": "strict-origin-when-cross-origin"
