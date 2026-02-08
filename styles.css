@@ -1,0 +1,439 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Professional Blue Theme (Default) */
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --accent-color: #3b82f6;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --border-color: #e2e8f0;
+    --success-color: #10b981;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Theme Variations */
+body.theme-modern {
+    --primary-color: #7c3aed;
+    --secondary-color: #5b21b6;
+    --accent-color: #8b5cf6;
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #f1f5f9;
+    --text-light: #94a3b8;
+    --border-color: #334155;
+}
+
+body.theme-elegant {
+    --primary-color: #9333ea;
+    --secondary-color: #7e22ce;
+    --accent-color: #a855f7;
+    --bg-color: #faf5ff;
+    --card-bg: #ffffff;
+    --text-color: #581c87;
+    --text-light: #7c3aed;
+    --border-color: #e9d5ff;
+}
+
+body.theme-fresh {
+    --primary-color: #059669;
+    --secondary-color: #047857;
+    --accent-color: #10b981;
+    --bg-color: #f0fdf4;
+    --card-bg: #ffffff;
+    --text-color: #064e3b;
+    --text-light: #059669;
+    --border-color: #d1fae5;
+}
+
+body.theme-warm {
+    --primary-color: #ea580c;
+    --secondary-color: #c2410c;
+    --accent-color: #f97316;
+    --bg-color: #fff7ed;
+    --card-bg: #ffffff;
+    --text-color: #7c2d12;
+    --text-light: #ea580c;
+    --border-color: #fed7aa;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-lg);
+}
+
+#custom-logo-container {
+    margin-bottom: 20px;
+}
+
+#custom-logo {
+    max-width: 200px;
+    max-height: 100px;
+    border-radius: 8px;
+    background: white;
+    padding: 10px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+/* Main Content */
+.main-content {
+    display: grid;
+    gap: 30px;
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card h3 {
+    color: var(--text-color);
+    margin: 25px 0 15px 0;
+    font-size: 1.2rem;
+}
+
+/* Theme Section */
+.theme-section {
+    background: linear-gradient(to right, var(--card-bg), var(--bg-color));
+}
+
+.theme-selector, .logo-upload {
+    margin-bottom: 20px;
+}
+
+.theme-selector label, .logo-upload label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.theme-selector select {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.theme-selector select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+input[type="file"] {
+    padding: 8px;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    width: 100%;
+    background: var(--bg-color);
+    cursor: pointer;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* QR Code Section */
+.qr-section {
+    text-align: center;
+}
+
+#qr-code-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+#qr-code-container canvas,
+#qr-code-container img {
+    border: 4px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 10px;
+    background: white;
+}
+
+.qr-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#landing-page-url {
+    padding: 15px;
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    word-break: break-all;
+    font-family: monospace;
+    color: var(--text-light);
+}
+
+/* Preview Section */
+.preview-section {
+    background: var(--bg-color);
+}
+
+.preview-frame {
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    background: white;
+    min-height: 300px;
+}
+
+.preview-card {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.preview-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid var(--primary-color);
+}
+
+.preview-card h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 10px 0;
+}
+
+.preview-card .job-title {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.preview-card .organization {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.preview-contact {
+    text-align: left;
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--bg-color);
+    border-radius: 8px;
+}
+
+.preview-contact p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.preview-contact a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.preview-contact a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-light);
+    margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .qr-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Success Message */
+.success-message {
+    background: var(--success-color);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}

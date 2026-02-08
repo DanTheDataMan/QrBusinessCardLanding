@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Business Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body.theme-modern {
+            --primary-color: #7c3aed;
+            --secondary-color: #5b21b6;
+            --accent-color: #8b5cf6;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --text-light: #94a3b8;
+            --border-color: #334155;
+        }
+
+        body.theme-elegant {
+            --primary-color: #9333ea;
+            --secondary-color: #7e22ce;
+            --accent-color: #a855f7;
+            --bg-color: #faf5ff;
+            --card-bg: #ffffff;
+            --text-color: #581c87;
+            --text-light: #7c3aed;
+            --border-color: #e9d5ff;
+        }
+
+        body.theme-fresh {
+            --primary-color: #059669;
+            --secondary-color: #047857;
+            --accent-color: #10b981;
+            --bg-color: #f0fdf4;
+            --card-bg: #ffffff;
+            --text-color: #064e3b;
+            --text-light: #059669;
+            --border-color: #d1fae5;
+        }
+
+        body.theme-warm {
+            --primary-color: #ea580c;
+            --secondary-color: #c2410c;
+            --accent-color: #f97316;
+            --bg-color: #fff7ed;
+            --card-bg: #ffffff;
+            --text-color: #7c2d12;
+            --text-light: #ea580c;
+            --border-color: #fed7aa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 5px;
+        }
+
+        .organization {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .contact-section {
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 12px;
+            background: var(--bg-color);
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .address-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--bg-color);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .note-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--bg-color);
+            border-radius: 10px;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .card-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container" id="card-container">
+        <!-- Content will be dynamically loaded -->
+    </div>
+
+    <script>
+        // Parse URL parameters
+        function getURLParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Load card data
+        function loadCard() {
+            const encodedData = getURLParameter('data');
+            if (!encodedData) {
+                document.getElementById('card-container').innerHTML = `
+                    <div class="card-body" style="text-align: center; padding: 60px 30px;">
+                        <h1 style="color: var(--primary-color); margin-bottom: 20px;">No Card Data Found</h1>
+                        <p>Please scan a valid QR code or use a valid link.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const data = JSON.parse(atob(encodedData));
+                
+                // Set theme
+                if (data.theme) {
+                    document.body.className = `theme-${data.theme}`;
+                }
+
+                // Build card HTML
+                let cardHTML = '<div class="card-header">';
+                
+                if (data.photo) {
+                    cardHTML += `<img src="${data.photo}" alt="Profile Photo" class="profile-photo">`;
+                }
+                
+                cardHTML += `<h1>${data.firstName} ${data.lastName}</h1>`;
+                
+                if (data.title) {
+                    cardHTML += `<p class="job-title">${data.title}</p>`;
+                }
+                
+                if (data.organization) {
+                    cardHTML += `<p class="organization">${data.organization}</p>`;
+                }
+                
+                cardHTML += '</div><div class="card-body">';
+                
+                // Contact Information
+                cardHTML += '<div class="contact-section">';
+                
+                if (data.email) {
+                    cardHTML += `
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <a href="mailto:${data.email}">${data.email}</a>
+                        </div>
+                    `;
+                }
+                
+                if (data.phone) {
+                    cardHTML += `
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <a href="tel:${data.phone}">${data.phone}</a>
+                        </div>
+                    `;
+                }
+                
+                if (data.website) {
+                    cardHTML += `
+                        <div class="contact-item">
+                            <div class="contact-icon">🌐</div>
+                            <a href="${data.website}" target="_blank">${data.website}</a>
+                        </div>
+                    `;
+                }
+                
+                if (data.linkedin) {
+                    cardHTML += `
+                        <div class="contact-item">
+                            <div class="contact-icon">💼</div>
+                            <a href="${data.linkedin}" target="_blank">LinkedIn Profile</a>
+                        </div>
+                    `;
+                }
+                
+                if (data.twitter) {
+                    cardHTML += `
+                        <div class="contact-item">
+                            <div class="contact-icon">🐦</div>
+                            <span>${data.twitter}</span>
+                        </div>
+                    `;
+                }
+                
+                cardHTML += '</div>';
+                
+                // Address
+                if (data.street || data.city || data.state || data.zip || data.country) {
+                    const addressParts = [data.street, data.city, data.state, data.zip, data.country].filter(p => p);
+                    cardHTML += `
+                        <div class="address-section">
+                            <strong>📍 Address:</strong><br>
+                            ${addressParts.join(', ')}
+                        </div>
+                    `;
+                }
+                
+                // Note
+                if (data.note) {
+                    cardHTML += `
+                        <div class="note-section">
+                            <strong>📝 Note:</strong><br>
+                            ${data.note}
+                        </div>
+                    `;
+                }
+                
+                // Action Buttons
+                cardHTML += `
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="downloadVCard()">Add to Contacts</button>
+                        <button class="btn btn-secondary" onclick="shareCard()">Share Card</button>
+                    </div>
+                `;
+                
+                cardHTML += '</div>';
+                
+                document.getElementById('card-container').innerHTML = cardHTML;
+                
+                // Store data for vCard generation
+                window.cardData = data;
+                
+            } catch (error) {
+                console.error('Error loading card:', error);
+                document.getElementById('card-container').innerHTML = `
+                    <div class="card-body" style="text-align: center; padding: 60px 30px;">
+                        <h1 style="color: var(--primary-color); margin-bottom: 20px;">Error Loading Card</h1>
+                        <p>There was an error loading the business card data.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Generate and download vCard
+        function downloadVCard() {
+            const data = window.cardData;
+            if (!data) return;
+
+            let vcard = 'BEGIN:VCARD\n';
+            vcard += 'VERSION:3.0\n';
+            vcard += `FN:${data.firstName} ${data.lastName}\n`;
+            vcard += `N:${data.lastName};${data.firstName};;;\n`;
+            
+            if (data.organization) vcard += `ORG:${data.organization}\n`;
+            if (data.title) vcard += `TITLE:${data.title}\n`;
+            if (data.email) vcard += `EMAIL;TYPE=INTERNET:${data.email}\n`;
+            if (data.phone) vcard += `TEL;TYPE=CELL:${data.phone}\n`;
+            if (data.website) vcard += `URL:${data.website}\n`;
+            
+            if (data.street || data.city || data.state || data.zip || data.country) {
+                vcard += `ADR;TYPE=WORK:;;${data.street || ''};${data.city || ''};${data.state || ''};${data.zip || ''};${data.country || ''}\n`;
+            }
+            
+            if (data.linkedin) vcard += `X-SOCIALPROFILE;TYPE=linkedin:${data.linkedin}\n`;
+            if (data.twitter) vcard += `X-SOCIALPROFILE;TYPE=twitter:${data.twitter}\n`;
+            if (data.note) vcard += `NOTE:${data.note}\n`;
+            
+            if (data.photo) {
+                const photoData = data.photo.split(',')[1];
+                vcard += `PHOTO;ENCODING=b;TYPE=JPEG:${photoData}\n`;
+            }
+            
+            vcard += 'END:VCARD';
+            
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = `${data.firstName}_${data.lastName}.vcf`;
+            link.href = url;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Share card
+        function shareCard() {
+            if (navigator.share) {
+                navigator.share({
+                    title: `${window.cardData.firstName} ${window.cardData.lastName} - Business Card`,
+                    text: 'Check out my digital business card!',
+                    url: window.location.href
+                }).catch(err => console.log('Error sharing:', err));
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link copied to clipboard!');
+                }).catch(err => {
+                    alert('Unable to share. Please copy the URL manually.');
+                });
+            }
+        }
+
+        // Load card on page load
+        document.addEventListener('DOMContentLoaded', loadCard);
+    </script>
+</body>
+</html>
