@@ -12,9 +12,12 @@ export async function GET(
     return NextResponse.json({ error: "Card not found" }, { status: 404 });
   }
 
-  const baseUrl = request.headers.get("x-forwarded-host")
-    ? `${request.headers.get("x-forwarded-proto") || "https"}://${request.headers.get("x-forwarded-host")}`
-    : new URL(request.url).origin;
+  const forwardedHost = request.headers.get("x-forwarded-host");
+  const forwardedProto = request.headers.get("x-forwarded-proto");
+  const baseUrl =
+    forwardedHost && forwardedProto
+      ? `${forwardedProto}://${forwardedHost}`
+      : new URL(request.url).origin;
 
   const landingUrl = `${baseUrl}/${card.slug}`;
 

@@ -87,14 +87,26 @@ export function createCard(card: Omit<Card, "created_at" | "updated_at">): Card 
   return getCardById(card.id) as Card;
 }
 
+const ALLOWED_COLUMNS = new Set([
+  "slug", "first_name", "last_name", "title", "company", "email", "phone",
+  "website", "address", "bio", "photo_url", "linkedin", "twitter",
+  "primary_color", "secondary_color", "accent_color", "text_color", "font_family",
+]);
+
 export function updateCard(id: string, updates: Partial<Omit<Card, "id" | "created_at" | "updated_at">>): Card | undefined {
   const db = getDb();
-  const fields = Object.keys(updates)
+  const safeUpdates: Record<string, unknown> = {};
+  for (const key of Object.keys(updates)) {
+    if (ALLOWED_COLUMNS.has(key)) {
+      safeUpdates[key] = (updates as Record<string, unknown>)[key];
+    }
+  }
+  const fields = Object.keys(safeUpdates)
     .map((key) => `${key} = @${key}`)
     .join(", ");
   if (!fields) return getCardById(id);
   const stmt = db.prepare(`UPDATE cards SET ${fields}, updated_at = datetime('now') WHERE id = @id`);
-  stmt.run({ ...updates, id });
+  stmt.run({ ...safeUpdates, id });
   return getCardById(id);
 }
 
